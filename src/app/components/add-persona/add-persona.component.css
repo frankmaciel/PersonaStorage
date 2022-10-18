@@ -1,0 +1,17 @@
+mat-card {
+    border: 0.01px solid #000;
+    width: 200px;
+    height: 150px;
+    display: flex;
+    align-items:center; 
+    justify-content: center; 
+}
+
+mat-card:hover{
+    transform: translate3D(0,-1px,0) scale(1.03);
+    cursor: pointer;
+}
+
+mat-card mat-icon {
+    transform: scale(1.5);
+} 
