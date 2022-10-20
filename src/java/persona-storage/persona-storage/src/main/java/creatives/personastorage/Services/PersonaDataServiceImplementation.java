@@ -46,13 +46,13 @@ public class PersonaDataServiceImplementation implements PersonaDataService {
     PersonaObject persona = new PersonaObject();
     persona.setName((String) mapping.get("name"));
     persona.setGender((String) mapping.get("gender"));
-    persona.setHairColor((String) mapping.get("hair_color"));
-    persona.setHairLength((String) mapping.get("hair_length"));
-    persona.setHairDescription((String) mapping.get("hair_description"));
-    persona.setEyeColor((String) mapping.get("eye_color"));
-    persona.setHeadShape((String) mapping.get("head_shape"));
+    persona.setHairColor((String) mapping.get("hairColor"));
+    persona.setHairLength((String) mapping.get("hairLength"));
+    persona.setHairDescription((String) mapping.get("hairDescription"));
+    persona.setEyeColor((String) mapping.get("eyeColor"));
+    persona.setHeadShape((String) mapping.get("headShape"));
     persona.setHeight((String) mapping.get("height"));
-    persona.setBodyType((String) mapping.get("body_type"));
+    persona.setBodyType((String) mapping.get("bodyType"));
     return persona;
   }
 }

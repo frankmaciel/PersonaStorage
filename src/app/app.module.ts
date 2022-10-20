@@ -15,7 +15,9 @@ import { PersonaFormComponent } from './components/persona-form/persona-form.com
 import { FormsModule } from "@angular/forms"
 
 import { HttpClientModule } from '@angular/common/http';
+import { PersonaInfoComponent } from './components/persona-info/persona-info.component';
 
+import {FlexLayoutModule} from '@angular/flex-layout'
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     PersonacardComponent,
     AddPersonaComponent,
     PersonaFormComponent,
+    PersonaInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     FormsModule,
     HttpClientModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

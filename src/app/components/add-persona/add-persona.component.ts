@@ -13,6 +13,7 @@ export class AddPersonaComponent implements OnInit {
   
   openDialog(){
     this.DialogRef.open(PersonaFormComponent)
+    
   }
 
   ngOnInit(): void {
