@@ -8,7 +8,8 @@ import {MatCardModule} from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddPersonaComponent } from './components/add-persona/add-persona.component';
 import {MatIconModule} from '@angular/material/icon';
-
+import {MatSliderModule} from '@angular/material/slider';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule} from '@angular/material/dialog';
 import { PersonaFormComponent } from './components/persona-form/persona-form.component'
 
@@ -16,8 +17,8 @@ import { FormsModule } from "@angular/forms"
 
 import { HttpClientModule } from '@angular/common/http';
 import { PersonaInfoComponent } from './components/persona-info/persona-info.component';
-
-import {FlexLayoutModule} from '@angular/flex-layout'
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {FlexLayoutModule} from '@angular/flex-layout'
     AddPersonaComponent,
     PersonaFormComponent,
     PersonaInfoComponent,
+    ToolbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,8 @@ import {FlexLayoutModule} from '@angular/flex-layout'
     FormsModule,
     HttpClientModule,
     FlexLayoutModule,
+    MatToolbarModule,
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

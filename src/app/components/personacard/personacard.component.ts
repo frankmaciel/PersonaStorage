@@ -12,8 +12,6 @@ import { PersonaInfoComponent } from '../persona-info/persona-info.component';
 export class PersonacardComponent implements OnInit {
 
   personas: any
-  truth: any
-
   constructor(private personaDataService: PersonaDataService, private DialogRef: MatDialog) { 
     
   }

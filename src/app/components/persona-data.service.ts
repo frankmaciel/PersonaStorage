@@ -16,9 +16,10 @@ export class PersonaDataService {
 
   constructor(private http: HttpClient) { 
   }
-
   private personas_data = new BehaviorSubject<Observable<personaInterface>>(this.getPersonasData())
   personas = this.personas_data.asObservable()
+
+
 
   savePersonaData(persona: Persona){
     var jsonPersona = JSON.stringify(persona)
