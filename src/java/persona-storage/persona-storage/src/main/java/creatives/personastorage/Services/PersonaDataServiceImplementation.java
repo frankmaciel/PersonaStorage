@@ -1,6 +1,7 @@
 package creatives.personastorage.Services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import creatives.personastorage.Models.PersonaObject;
 import creatives.personastorage.Services.Abstract.PersonaDataService;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,13 @@ public class PersonaDataServiceImplementation implements PersonaDataService {
   @Override
   public ArrayList<PersonaObject> getPersonas() {
     return personaList;
+  }
+
+  public String personaListToJSON(ArrayList<PersonaObject> personaObjList) throws JsonProcessingException {
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.enable(SerializationFeature.INDENT_OUTPUT);
+    String json = mapper.writeValueAsString(personaObjList);
+    return json;
   }
 
   //Helper Functions ------------

@@ -5,29 +5,35 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { personaInterface } from './persona-interface';
 
+interface saveResponse{
+  response: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class PersonaDataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+  }
 
   private personas_data = new BehaviorSubject<Observable<personaInterface>>(this.getPersonasData())
   personas = this.personas_data.asObservable()
 
   savePersonaData(persona: Persona){
     var jsonPersona = JSON.stringify(persona)
+    this.http.post<saveResponse>("http://localhost:8080/api/addpersona", jsonPersona).subscribe()
   }
 
-  getPersonasData(){ // used for the variable above
-    let temp = this.http.get<personaInterface>("localhost:8080/api/getpersonas").pipe(retry(3))
+  getPersonasData(){ 
+    let temp = this.http.get<personaInterface>("http://localhost:8080/api/getpersonas").pipe(retry(3))
     return temp
   }
 
-  refreshPersonasData(){ // used to refresh the personas variable
+
+  refreshPersonaData(){
     this.personas_data.next(this.getPersonasData())
   }
-
 
 }
 

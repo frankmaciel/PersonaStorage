@@ -77,7 +77,7 @@
           </div>
         </div> -->
         <div class="row">
-            <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+            <button type="submit" class="btn btn-success" (click)="refreshPersona()" [disabled]="!heroForm.form.valid">Submit</button>
             <button type="button" class="btn btn-default" (click)="newPersona(); heroForm.reset()">New Hero</button>
             <button type="submit" mat-dialog-close mat-button>Exit</button>
         </div>
@@ -124,6 +124,6 @@
       </div>
       <br>
       <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
-      <button type="submit" (click)="storePersona()" mat-dialog-close mat-button>Confirm</button>
+      <button type="submit" (click)="storePersona();refreshPersona()" mat-dialog-close mat-button>Confirm</button>
     </div>
   </div>

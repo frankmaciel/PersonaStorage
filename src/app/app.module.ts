@@ -22,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     PersonacardComponent,
     AddPersonaComponent,
-    PersonaFormComponent
+    PersonaFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,9 @@ export class PersonaFormComponent implements OnInit {
   storePersona(){
     this.personaDataService.savePersonaData(this.model);
   }
+  refreshPersona(){
+    this.personaDataService.refreshPersonaData();
+  }
 
   onSubmit(){
     this.submitted = true;

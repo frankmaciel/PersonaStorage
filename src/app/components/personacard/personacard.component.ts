@@ -16,8 +16,7 @@ export class PersonacardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.personaDataService.personas.subscribe(personas => {this.personas = personas})
-    console.log(this.personas)
+    this.personaDataService.personas.subscribe((persona: any) => {this.personas = persona})
   }
 
 }
