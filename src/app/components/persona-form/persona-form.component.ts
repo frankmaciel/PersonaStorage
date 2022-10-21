@@ -13,7 +13,7 @@ export class PersonaFormComponent implements OnInit {
 
   submitted = false;
 
-  model = new Persona("Jane", "female", "red","long","wavy","blue", "round", "short", "skinny");
+  model = new Persona(0,"Jane", "Young" ,"female", "red","long","wavy","blue", "round", "short", "skinny", "");
 
   constructor(private personaDataService: PersonaDataService) { }
 
@@ -29,7 +29,7 @@ export class PersonaFormComponent implements OnInit {
   }
 
   newPersona(){
-    this.model = new Persona("", "", "","","","", "", "", "")
+    this.model = new Persona(0,"","", "", "","","","", "", "", "", "") 
   }
 
   ngOnInit(): void {

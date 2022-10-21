@@ -11,6 +11,8 @@ public interface PersonaDataService {
 
   abstract ArrayList<PersonaObject> getPersonas();
 
+  abstract int getNextID();
+  public void editPersona(String JSONStringToAdd) throws JsonProcessingException;
 
 
 }

@@ -4,7 +4,9 @@ import creatives.personastorage.Models.Abstract.PersonaObjectAbstract;
 
 public class PersonaObject implements PersonaObjectAbstract {
 
+  private int id = -1;
   private String name = null;
+  private String age = null;
   private String gender = null;
   private String hairColor = null;
   private String hairLength = null;
@@ -13,10 +15,21 @@ public class PersonaObject implements PersonaObjectAbstract {
   private String headShape = null;
   private String height = null;
   private String bodyType = null;
+  private String image = null;
+
+  @Override
+  public int getID() {
+    return this.id;
+  }
 
   @Override
   public String getName() {
     return this.name;
+  }
+
+  @Override
+  public String getAge() {
+    return this.age;
   }
 
   @Override
@@ -60,8 +73,21 @@ public class PersonaObject implements PersonaObjectAbstract {
   }
 
   @Override
+  public String getImage() { return this.image; }
+
+  @Override
+  public void setID(int toSet) {
+    this.id = toSet;
+  }
+
+  @Override
   public void setName(String toSet) {
     this.name = toSet;
+  }
+
+  @Override
+  public void setAge(String age) {
+    this.age = age;
   }
 
   @Override
@@ -103,4 +129,13 @@ public class PersonaObject implements PersonaObjectAbstract {
   public void setBodyType(String toSet) {
     this.bodyType = toSet;
   }
+
+  @Override
+  public void setImage(String toSet) {
+    this.image = toSet;
+  }
+
 }
+
+
+

@@ -1,6 +1,6 @@
 <ng-container *ngIf="(personas|async) != null ">
     <div class="content">
-        <h2>Stored Personas</h2>
+    <h2>Stored Personas</h2>
     </div>
     <div fxLayout="row wrap" fxLayoutGap="0px">
         <div class="center" [fxFlex]="(100/5) + '%'" fxFlex.xs ="100%" fxFlex.sm="33%" *ngFor="let persona of (personas|async)" (click)="openPersonaDialog(persona)">

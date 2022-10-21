@@ -3,7 +3,9 @@ import { personaInterface } from "./persona-interface";
 export class Persona implements personaInterface {
 
     constructor(
+      public id: number,
       public name: string,
+      public age: string,
       public gender: string, // male, female, cisgendered, trans, etc.,
       public hairColor: string, // red, blue, etc ...
       public hairLength: string, // short, medium, long
@@ -12,6 +14,7 @@ export class Persona implements personaInterface {
       public headShape: string, // Round, square, well defined etc,
       public height: string, //tall, short average height, etc.,
       public bodyType: string, // Scrawny, buff, bulky, etc.,
+      public image: string,
     ) {  }
   
   }

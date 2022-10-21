@@ -1,39 +1,132 @@
-<div class="row">
-    <div class="col-xs-3" style="color: grey;">Name:</div>
-    <div class="col-xs-9">{{ persona.name }}</div>
+<div class="container">
+  <div [hidden]="!edit">
+    <h1>Persona Form</h1>
+      <form (ngSubmit)="onSubmit()" #personaForm="ngForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name"
+                 required
+                 [(ngModel)]="persona.name" name="name"
+                 #name="ngModel">
+          <div [hidden]="name.valid || name.pristine"
+               class="alert alert-danger">
+            Name is required
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="gender">Age</label>
+          <input type="text" class="form-control" id="age"
+                 [(ngModel)]="persona.age" name="age">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <input type="text" class="form-control" id="gender"
+                   [(ngModel)]="persona.gender" name="gender">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="hair_color">Hair Color</label>
+            <input type="text" class="form-control" id="hair_color"
+                   [(ngModel)]="persona.hairColor" name="hair_color">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="hair_length">Hair Length</label>
+            <input type="text" class="form-control" id="hair_length"
+                   [(ngModel)]="persona.hairLength" name="hair_length">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="hair_description">Hair Description</label>
+            <input type="text" class="form-control" id="hair_description"
+                   [(ngModel)]="persona.hairDescription" name="hair_description">
+        </div>
+        <br>  
+        <div class="form-group">
+            <label for="eye_color">Eye Color</label>
+            <input type="text" class="form-control" id="eye_color"
+                   [(ngModel)]="persona.eyeColor" name="eye_color">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="head_shape">Head Shape</label>
+            <input type="text" class="form-control" id="head_shape"
+                   [(ngModel)]="persona.headShape" name="head_shape">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="height">Height</label>
+            <input type="text" class="form-control" id="height"
+                   [(ngModel)]="persona.height" name="height">
+        </div>
+        <br>  
+        <div class="form-group">
+            <label for="body_type">Body Type</label>
+            <input type="text" class="form-control" id="body_type"
+                   [(ngModel)]="persona.bodyType" name="body_type">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="body_type">Image</label>
+          <input type="text" class="form-control" id="image"
+                 [(ngModel)]="persona.image" name="image">
+        </div>
+        <br>
+        <div class="row">
+            <button type="submit" (click)="editUser();refreshPersona()" class="btn btn-success" mat-dialog-close mat-button>Submit</button>
+            <button type="submit" (click)="this.edit=false">Back</button>
+        </div>
+    </form>
   </div>
-  <div class="row">
-    <div class="col-xs-3" style="color: grey;">Gender:</div>
-    <div class="col-xs-9">{{ persona.gender }}</div>
-  </div>
-  <div class="row">
-    <div class="col-xs-3" style="color: grey;">Hair Color:</div>
-    <div class="col-xs-9">{{ persona.hairColor }}</div>
-  </div>
-  <div class="row">
-    <div class="col-xs-3" style="color: grey;">Hair Length:</div>
-    <div class="col-xs-9">{{ persona.hairLength }}</div>
-  </div>
-  <div class="row">
-    <div class="col-xs-3" style="color: grey;">Hair Description:</div>
-    <div class="col-xs-9">{{ persona.hairDescription }}</div>
-  </div>
-  <div class="row">
-    <div class="col-xs-3" style="color: grey;">Eye Color:</div>
-    <div class="col-xs-9">{{ persona.eyeColor }}</div>
-  </div>
-  <div class="row">
-    <div class="col-xs-3" style="color: grey;">Head Shape:</div>
-    <div class="col-xs-9">{{ persona.headShape }}</div>
-  </div>
-  <div class="row" >
-    <div class="col-xs-3" style="color: grey;">Height:</div>
-    <div class="col-xs-9">{{ persona.height }}</div>
-  </div>
-  <div class="row">
-    <div class="col-xs-3" style="color: grey;">Body Type:</div>
-    <div class="col-xs-9">{{ persona.bodyType }}</div>
+  <div [hidden]="edit">
+    <div class="row">
+      <div class="col-xs-3" style="color: grey;">Name:</div>
+      <div class="col-xs-9">{{ persona.name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3" style="color: grey;">Age:</div>
+      <div class="col-xs-9">{{ persona.age }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3" style="color: grey;">Gender:</div>
+      <div class="col-xs-9">{{ persona.gender }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3" style="color: grey;">Hair Color:</div>
+      <div class="col-xs-9">{{ persona.hairColor }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3" style="color: grey;">Hair Length:</div>
+      <div class="col-xs-9">{{ persona.hairLength }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3" style="color: grey;">Hair Description:</div>
+      <div class="col-xs-9">{{ persona.hairDescription }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3" style="color: grey;">Eye Color:</div>
+      <div class="col-xs-9">{{ persona.eyeColor }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3" style="color: grey;">Head Shape:</div>
+      <div class="col-xs-9">{{ persona.headShape }}</div>
+    </div>
+    <div class="row" >
+      <div class="col-xs-3" style="color: grey;">Height:</div>
+      <div class="col-xs-9">{{ persona.height }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3" style="color: grey;">Body Type:</div>
+      <div class="col-xs-9">{{ persona.bodyType }}</div>
+    </div>
+    <div class="row">
+    <div class="col-xs-3" style="color: grey;">Image:</div>
+    <div class="col-xs-9">{{ persona.image }}</div>
   </div>
   <br>
-  <button type="button" class="btn btn-primary">Edit</button> <!-- Does nothing for now-->
+  <button type="button" class="btn btn-primary" (click)="this.edit=true">Edit</button> <!-- Does nothing for now-->
   <button type="submit" mat-dialog-close mat-button>Back</button>
+  </div>
+</div>

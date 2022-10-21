@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PersonaDataService } from '../persona-data.service';
 
 @Component({
   selector: 'app-persona-info',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonaInfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private personaDataService: PersonaDataService) { }
+
+  edit = false;
 
   persona: any
+
+  onSubmit(){
+    this.edit = true;
+  }
+
+  editUser(){
+    this.personaDataService.editPersonaData(this.persona);
+  }
+  refreshPersona(){
+    this.personaDataService.refreshPersonaData();
+  }
   
   ngOnInit(): void {
   }

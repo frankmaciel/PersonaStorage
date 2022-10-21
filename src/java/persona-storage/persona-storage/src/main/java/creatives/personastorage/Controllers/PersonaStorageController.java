@@ -45,5 +45,12 @@ public class PersonaStorageController {
     service.addPersona(personaJSON);
     return ResponseEntity.ok().body("{}");
   }
+  @PostMapping(path= PersonaStorageLinks.EDIT_PERSONA)
+  public ResponseEntity<?> editPersona(@RequestBody String personaJSON) throws JsonProcessingException {
+    log.info("Editing: "+personaJSON);
+    System.out.println("Editing: "+personaJSON);
+    service.editPersona(personaJSON);
+    return ResponseEntity.ok().body("{}");
+  }
 
 }

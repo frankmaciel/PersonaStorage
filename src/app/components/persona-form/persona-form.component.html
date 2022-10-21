@@ -2,7 +2,7 @@
 <div class="container">
     <div [hidden]="submitted">
       <h1>Persona Form</h1>
-      <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+      <form (ngSubmit)="onSubmit()" #personaForm="ngForm">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name"
@@ -13,6 +13,12 @@
                class="alert alert-danger">
             Name is required
           </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="gender">Age</label>
+          <input type="text" class="form-control" id="age"
+                 [(ngModel)]="model.age" name="age">
         </div>
         <br>
         <div class="form-group">
@@ -62,6 +68,12 @@
             <input type="text" class="form-control" id="body_type"
                    [(ngModel)]="model.bodyType" name="body_type">
         </div>
+        <br>
+        <div class="form-group">
+          <label for="body_type">Image</label>
+          <input type="text" class="form-control" id="image"
+                 [(ngModel)]="model.image" name="image">
+        </div>
         <br>  
         
         <!-- <div class="form-group">
@@ -77,8 +89,8 @@
           </div>
         </div> -->
         <div class="row">
-            <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
-            <button type="button" class="btn btn-default" (click)="newPersona(); heroForm.reset()">New Hero</button>
+            <button type="submit" class="btn btn-success" [disabled]="!personaForm.form.valid">Submit</button>
+            <button type="button" class="btn btn-default" (click)="newPersona(); personaForm.reset()">New Persona</button>
             <button type="submit" mat-dialog-close mat-button>Exit</button>
         </div>
     </form>
@@ -89,6 +101,10 @@
       <div class="row">
         <div class="col-xs-3" style="color: grey;">Name:</div>
         <div class="col-xs-9">{{ model.name }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3" style="color: grey;">Age:</div>
+        <div class="col-xs-9">{{ model.age }}</div>
       </div>
       <div class="row">
         <div class="col-xs-3" style="color: grey;">Gender:</div>
@@ -121,6 +137,10 @@
       <div class="row">
         <div class="col-xs-3" style="color: grey;">Body Type:</div>
         <div class="col-xs-9">{{ model.bodyType }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3" style="color: grey;">Image:</div>
+        <div class="col-xs-9">{{ model.image }}</div>
       </div>
       <br>
       <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>

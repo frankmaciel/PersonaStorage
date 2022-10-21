@@ -19,18 +19,46 @@ public class PersonaDataServiceImplementation implements PersonaDataService {
 
   @Override
   public void addPersona(String JSONStringToAdd) throws JsonProcessingException {
-    //Use the two helper functions to turn a JSON String into a HashMap
-    //And then into a Persona Object
     if(personaList == null){
       personaList = new ArrayList<>();
+      PersonaObject persona = JsonToPersona(JSONStringToAdd);
+      persona.setID(0);
+      personaList.add(persona);
+    }else{
+      PersonaObject persona = JsonToPersona(JSONStringToAdd);
+      persona.setID(getNextID());
+      personaList.add(persona);
     }
-    PersonaObject persona = JsonToPersona(JSONStringToAdd);
-    personaList.add(persona);
+  }
+
+  public void editPersona(String JSONStringToAdd) throws JsonProcessingException {
+      PersonaObject persona = JsonToPersona(JSONStringToAdd);
+      int id = persona.getID();
+      for (PersonaObject p : personaList){
+        if (p.getID() == id){
+          personaList.remove(p);
+          break;
+        }
+      }
+      personaList.add(persona);
   }
 
   @Override
   public ArrayList<PersonaObject> getPersonas() {
     return personaList;
+  }
+
+  @Override
+  public int getNextID() {
+    int nextID = -1;
+    if(personaList != null) {
+      for (PersonaObject p : personaList) {
+        if (p.getID() > nextID) {
+          nextID = p.getID();
+        }
+      }
+    }
+    return nextID+1;
   }
 
   public String personaListToJSON(ArrayList<PersonaObject> personaObjList) throws JsonProcessingException {
@@ -44,7 +72,9 @@ public class PersonaDataServiceImplementation implements PersonaDataService {
   private PersonaObject JsonToPersona(String JSONString) throws JsonProcessingException {
     Map<String, Object> mapping = new ObjectMapper().readValue(JSONString, HashMap.class);
     PersonaObject persona = new PersonaObject();
+    persona.setID((int) mapping.get("id"));
     persona.setName((String) mapping.get("name"));
+    persona.setAge((String) mapping.get("age"));
     persona.setGender((String) mapping.get("gender"));
     persona.setHairColor((String) mapping.get("hairColor"));
     persona.setHairLength((String) mapping.get("hairLength"));
