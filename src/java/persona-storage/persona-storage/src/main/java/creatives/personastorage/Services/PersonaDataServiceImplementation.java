@@ -83,6 +83,7 @@ public class PersonaDataServiceImplementation implements PersonaDataService {
     persona.setHeadShape((String) mapping.get("headShape"));
     persona.setHeight((String) mapping.get("height"));
     persona.setBodyType((String) mapping.get("bodyType"));
+    persona.setImage((String) mapping.get("image"));
     return persona;
   }
 }

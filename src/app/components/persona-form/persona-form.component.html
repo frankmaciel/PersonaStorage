@@ -1,5 +1,5 @@
-{{ model | json }}
-<div class="container">
+
+<div mat-dialog-content class="container scrollbar">
     <div [hidden]="submitted">
       <h1>Persona Form</h1>
       <form (ngSubmit)="onSubmit()" #personaForm="ngForm">
@@ -70,9 +70,7 @@
         </div>
         <br>
         <div class="form-group">
-          <label for="body_type">Image</label>
-          <input type="text" class="form-control" id="image"
-                 [(ngModel)]="model.image" name="image">
+          <app-drop-upload (setImage)="setImage($event)"></app-drop-upload>
         </div>
         <br>  
         
@@ -88,7 +86,7 @@
             Power is required
           </div>
         </div> -->
-        <div class="row">
+        <div mat-dialog-actions class="row">
             <button type="submit" class="btn btn-success" [disabled]="!personaForm.form.valid">Submit</button>
             <button type="button" class="btn btn-default" (click)="newPersona(); personaForm.reset()">New Persona</button>
             <button type="submit" mat-dialog-close mat-button>Exit</button>
@@ -143,7 +141,9 @@
         <div class="col-xs-9">{{ model.image }}</div>
       </div>
       <br>
-      <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
-      <button type="submit" (click)="storePersona();refreshPersona()" mat-dialog-close mat-button>Confirm</button>
+      <div mat-dialog-actions class="row">
+        <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
+        <button type="submit" (click)="storePersona();refreshPersona()" mat-dialog-close mat-button>Confirm</button>
+      </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
-<div class="container">
-  <div [hidden]="!edit">
-    <h1>Persona Form</h1>
+
+<div mat-dialog-content class="container scrollbar">
+  <div [hidden]="!edit" >
+    <h1>Edit Persona</h1>
       <form (ngSubmit)="onSubmit()" #personaForm="ngForm">
         <div class="form-group">
           <label for="name">Name</label>
@@ -69,64 +70,79 @@
         </div>
         <br>
         <div class="form-group">
-          <label for="body_type">Image</label>
-          <input type="text" class="form-control" id="image"
-                 [(ngModel)]="persona.image" name="image">
+          <app-drop-upload (setImage)="setImage($event)"></app-drop-upload>
         </div>
         <br>
-        <div class="row">
-            <button type="submit" (click)="editUser();refreshPersona()" class="btn btn-success" mat-dialog-close mat-button>Submit</button>
-            <button type="submit" (click)="this.edit=false">Back</button>
+        <div mat-dialog-actions class="row">
+            <button type="submit" (click)="editUser()" class="btn btn-success" mat-dialog-close mat-button [disabled]="!personaForm.form.valid">Submit</button>
+            <button type="button" (click)="this.edit=false;refreshPersona();">Back</button>
         </div>
     </form>
   </div>
-  <div [hidden]="edit">
+  <div [hidden]="edit" class="information-spacing">
     <div class="row">
       <div class="col-xs-3" style="color: grey;">Name:</div>
       <div class="col-xs-9">{{ persona.name }}</div>
     </div>
+    <br/>
     <div class="row">
       <div class="col-xs-3" style="color: grey;">Age:</div>
       <div class="col-xs-9">{{ persona.age }}</div>
     </div>
+    <br/>
     <div class="row">
       <div class="col-xs-3" style="color: grey;">Gender:</div>
       <div class="col-xs-9">{{ persona.gender }}</div>
     </div>
+    <br/>
     <div class="row">
       <div class="col-xs-3" style="color: grey;">Hair Color:</div>
       <div class="col-xs-9">{{ persona.hairColor }}</div>
     </div>
+    <br/>
     <div class="row">
       <div class="col-xs-3" style="color: grey;">Hair Length:</div>
       <div class="col-xs-9">{{ persona.hairLength }}</div>
     </div>
+    <br/>
     <div class="row">
       <div class="col-xs-3" style="color: grey;">Hair Description:</div>
       <div class="col-xs-9">{{ persona.hairDescription }}</div>
     </div>
+    <br/>
     <div class="row">
       <div class="col-xs-3" style="color: grey;">Eye Color:</div>
       <div class="col-xs-9">{{ persona.eyeColor }}</div>
     </div>
+    <br/>
     <div class="row">
       <div class="col-xs-3" style="color: grey;">Head Shape:</div>
       <div class="col-xs-9">{{ persona.headShape }}</div>
     </div>
+    <br/>
     <div class="row" >
       <div class="col-xs-3" style="color: grey;">Height:</div>
       <div class="col-xs-9">{{ persona.height }}</div>
     </div>
+    <br/>
     <div class="row">
       <div class="col-xs-3" style="color: grey;">Body Type:</div>
       <div class="col-xs-9">{{ persona.bodyType }}</div>
     </div>
+    <br/>
     <div class="row">
     <div class="col-xs-3" style="color: grey;">Image:</div>
-    <div class="col-xs-9">{{ persona.image }}</div>
+    <div *ngIf='(persona.image != "")'>
+      <div class="col-xs-9">{{ persona.image }}</div>
+    </div>
+    <div *ngIf='(persona.image == "")'>
+      <div class="col-xs-9">No Image</div>
+    </div>
   </div>
   <br>
-  <button type="button" class="btn btn-primary" (click)="this.edit=true">Edit</button> <!-- Does nothing for now-->
-  <button type="submit" mat-dialog-close mat-button>Back</button>
+  <div mat-dialog-actions class="row">
+    <button type="button" class="btn btn-primary" (click)="this.edit=true">Edit</button>
+    <button type="submit" mat-dialog-close mat-button>Back</button>
+  </div>
   </div>
 </div>

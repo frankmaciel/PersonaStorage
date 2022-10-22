@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Persona } from '../persona';
 import { PersonaDataService } from '../persona-data.service';
 
 @Component({
@@ -13,9 +14,14 @@ export class PersonaInfoComponent implements OnInit {
   edit = false;
 
   persona: any
+  modelPersona: any
 
   onSubmit(){
     this.edit = true;
+  }
+
+  setImage(image : File){
+    this.persona.image = image
   }
 
   editUser(){

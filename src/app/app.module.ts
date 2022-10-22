@@ -13,12 +13,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule} from '@angular/material/dialog';
 import { PersonaFormComponent } from './components/persona-form/persona-form.component'
 
-import { FormsModule } from "@angular/forms"
+import { FormsModule,ReactiveFormsModule } from "@angular/forms"
 
 import { HttpClientModule } from '@angular/common/http';
 import { PersonaInfoComponent } from './components/persona-info/persona-info.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { DropUploadComponent } from './components/drop-upload/drop-upload.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     PersonaFormComponent,
     PersonaInfoComponent,
     ToolbarComponent,
+    DropUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     FlexLayoutModule,
     MatToolbarModule,
     MatSliderModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

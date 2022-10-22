@@ -11,6 +11,8 @@ export class PersonaFormComponent implements OnInit {
 
   hair_length = ["short", "medium", "long"]
 
+  image: any = undefined
+
   submitted = false;
 
   model = new Persona(0,"Jane", "Young" ,"female", "red","long","wavy","blue", "round", "short", "skinny", "");
@@ -30,6 +32,10 @@ export class PersonaFormComponent implements OnInit {
 
   newPersona(){
     this.model = new Persona(0,"","", "", "","","","", "", "", "", "") 
+  }
+
+  setImage(image : File){
+    this.model.image = image
   }
 
   ngOnInit(): void {

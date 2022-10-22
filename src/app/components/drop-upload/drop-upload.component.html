@@ -1,0 +1,17 @@
+<label for="body_type" *ngIf="file">Image</label>
+<label for="body_type" *ngIf="!file">Drag an image</label>
+<div class="container space-top">
+    <div class="file-container" *ngIf="!file">
+        <input type="file" accept="image/*" (change)="getFile($event)" class="file">
+    </div>
+
+    <div *ngIf="file">
+        <div class="row">
+            {{file.name}}
+            <button class="space-left" (click)="clearImage()">Clear File</button>
+        </div>
+        <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
+            <img [src]="imageURL" [alt]="uploadForm.value.name">
+          </div>
+    </div>
+</div>

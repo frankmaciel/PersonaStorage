@@ -14,7 +14,7 @@ export class Persona implements personaInterface {
       public headShape: string, // Round, square, well defined etc,
       public height: string, //tall, short average height, etc.,
       public bodyType: string, // Scrawny, buff, bulky, etc.,
-      public image: string,
+      public image: any,
     ) {  }
   
   }

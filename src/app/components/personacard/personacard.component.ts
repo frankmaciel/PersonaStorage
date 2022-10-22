@@ -19,6 +19,7 @@ export class PersonacardComponent implements OnInit {
   openPersonaDialog(persona:any){
     let dialogref = this.DialogRef.open(PersonaInfoComponent)
     dialogref.componentInstance.persona = persona;
+    dialogref.afterClosed().subscribe(result => this.personaDataService.refreshPersonaData())
   }
 
   ngOnInit(): void {

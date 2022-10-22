@@ -1,0 +1,30 @@
+
+img {
+   max-height: 150px; 
+}
+
+.file-container {
+    height: 75px;
+    border: 0.5px dashed black;
+    border-radius: 16px;
+    background-color: lightgray;
+}
+
+.file-container:hover {
+    transform: translate3D(0,-1px,0) scale(1.03);
+    cursor: pointer;
+}
+
+.file {
+    padding-right: 25px;
+    height: 75px;
+    opacity: 0;
+}
+
+.space-top{
+    margin-top: 5px;
+}
+
+.space-left{
+    margin-left: 5px;
+}
