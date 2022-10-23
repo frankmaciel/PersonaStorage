@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { height: 100%; background-color: #a3a1a1; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
@@ -8,3 +8,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import '~@fortawesome/fontawesome-free/scss/brands.scss';
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
 @import '~mdb-angular-ui-kit/assets/scss/mdb.scss';
+
+html::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  html::-webkit-scrollbar:vertical {
+    width: 11px;
+  }
+  html::-webkit-scrollbar:horizontal {
+    height: 0px;
+  }
+  html::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+  }
+  html::-webkit-scrollbar-track { 
+    background-color: #fff; 
+    border-radius: 8px; 
+  } 

@@ -1,6 +1,7 @@
 package creatives.personastorage.Models;
 
 import creatives.personastorage.Models.Abstract.PersonaObjectAbstract;
+import org.springframework.web.multipart.MultipartFile;
 
 public class PersonaObject implements PersonaObjectAbstract {
 
@@ -15,7 +16,6 @@ public class PersonaObject implements PersonaObjectAbstract {
   private String headShape = null;
   private String height = null;
   private String bodyType = null;
-  private String image = null;
 
   @Override
   public int getID() {
@@ -72,8 +72,6 @@ public class PersonaObject implements PersonaObjectAbstract {
     return this.bodyType;
   }
 
-  @Override
-  public String getImage() { return this.image; }
 
   @Override
   public void setID(int toSet) {
@@ -130,10 +128,7 @@ public class PersonaObject implements PersonaObjectAbstract {
     this.bodyType = toSet;
   }
 
-  @Override
-  public void setImage(String toSet) {
-    this.image = toSet;
-  }
+
 
 }
 

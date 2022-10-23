@@ -9,7 +9,7 @@
                         <mat-card-header>
                             <mat-card-title>{{persona.name}}</mat-card-title>
                         </mat-card-header>
-                        <img mat-card-image src="./assets/logo.png"/>
+                        <img mat-card-image src="{{imageURL(persona.id)}}"/>
                         <mat-card-content>
                             {{persona.gender}} <!--Make this the persona description afterwards (text string sent to ai)--> 
                         </mat-card-content>

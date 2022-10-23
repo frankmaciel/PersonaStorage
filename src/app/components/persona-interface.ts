@@ -11,6 +11,6 @@ export interface personaInterface{
     headShape: string, // Round, square, well defined etc,
     height: string, //tall, short average height, etc.,
     bodyType: string, // Scrawny, buff, bulky, etc.,
-    image: any,
+    image: File,
     
 }

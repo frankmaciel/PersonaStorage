@@ -22,7 +22,10 @@ export class PersonaDataService {
 
   savePersonaData(persona: Persona){
     var jsonPersona = JSON.stringify(persona)
-    this.http.post<saveResponse>("http://localhost:8080/api/addpersona", jsonPersona).subscribe()
+    const fd = new FormData();
+    fd.append('image', persona.image, persona.image.name)
+    fd.append('persona', jsonPersona)
+    this.http.post<saveResponse>("http://localhost:8080/api/addpersona", fd).subscribe()
   }
 
   editPersonaData(persona: Persona){

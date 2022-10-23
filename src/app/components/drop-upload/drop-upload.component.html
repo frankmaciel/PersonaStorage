@@ -10,6 +10,7 @@
             {{file.name}}
             <button class="space-left" (click)="clearImage()">Clear File</button>
         </div>
+        <br/>
         <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
             <img [src]="imageURL" [alt]="uploadForm.value.name">
           </div>

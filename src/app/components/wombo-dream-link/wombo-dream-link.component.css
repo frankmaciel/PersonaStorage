@@ -1,42 +1,17 @@
-mat-toolbar {
-    justify-content: space-between;
-}
-
-.content {
-    padding: 16px;
-}
-
-.content > mat-card {
-    margin-bottom: 16px;
-}
-
-.column-label {
-    margin-right: 8px;
-    font-size: 1rem;
-}
-
-.toolbar{
-    background-color: #1a1a1a;
+.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
     color: white;
+    background: #1a1a1a;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
 }
 
-.to-home:visited {
-    text-decoration: none; 
-    color: white;
-}
-
-.to-home:hover {
-    transform: translate3D(0,-1px,0) scale(1.03);
-}
-
-.to-home {
-    text-decoration: none; 
-    color: white;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-.to-home:before {
+.glow-on-hover:before {
     content: '';
     background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
     position: absolute;
@@ -53,19 +28,19 @@ mat-toolbar {
     border-radius: 10px;
 }
 
-.to-home:active {
+.glow-on-hover:active {
     color: #000
 }
 
-.to-home:active:after {
+.glow-on-hover:active:after {
     background: transparent;
 }
 
-.to-home:hover:before {
+.glow-on-hover:hover:before {
     opacity: 1;
 }
 
-.to-home:after {
+.glow-on-hover:after {
     z-index: -1;
     content: '';
     position: absolute;
@@ -75,4 +50,14 @@ mat-toolbar {
     left: 0;
     top: 0;
     border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.glow-on-hover:hover{
+    transform: translate3D(0,-1px,0) scale(1.03);
 }

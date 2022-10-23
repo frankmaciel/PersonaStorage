@@ -20,6 +20,7 @@ import { PersonaInfoComponent } from './components/persona-info/persona-info.com
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DropUploadComponent } from './components/drop-upload/drop-upload.component';
+import { WomboDreamLinkComponent } from './components/wombo-dream-link/wombo-dream-link.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DropUploadComponent } from './components/drop-upload/drop-upload.compon
     PersonaInfoComponent,
     ToolbarComponent,
     DropUploadComponent,
+    WomboDreamLinkComponent,
   ],
   imports: [
     BrowserModule,

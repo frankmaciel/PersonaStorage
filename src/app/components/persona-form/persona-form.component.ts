@@ -11,11 +11,12 @@ export class PersonaFormComponent implements OnInit {
 
   hair_length = ["short", "medium", "long"]
 
-  image: any = undefined
+
+  image: File = new File([],"")
 
   submitted = false;
 
-  model = new Persona(0,"Jane", "Young" ,"female", "red","long","wavy","blue", "round", "short", "skinny", "");
+  model = new Persona(0,"Jane", "Young" ,"female", "red","long","wavy","blue", "round", "short", "skinny", this.image);
 
   constructor(private personaDataService: PersonaDataService) { }
 
@@ -31,11 +32,11 @@ export class PersonaFormComponent implements OnInit {
   }
 
   newPersona(){
-    this.model = new Persona(0,"","", "", "","","","", "", "", "", "") 
+    this.model = new Persona(0,"","", "", "","","","", "", "", "", this.image) 
   }
 
-  setImage(image : File){
-    this.model.image = image
+  setImage(imageToSet : File){
+    this.model.image = imageToSet
   }
 
   ngOnInit(): void {

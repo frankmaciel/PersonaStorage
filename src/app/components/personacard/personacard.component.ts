@@ -12,8 +12,14 @@ import { PersonaInfoComponent } from '../persona-info/persona-info.component';
 export class PersonacardComponent implements OnInit {
 
   personas: any
+  url:string = "http://localhost:8080/uploads/images/"
   constructor(private personaDataService: PersonaDataService, private DialogRef: MatDialog) { 
     
+  }
+
+  
+  imageURL(id: string){
+    return this.url + id + ".jpeg"
   }
 
   openPersonaDialog(persona:any){

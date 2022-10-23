@@ -2,25 +2,34 @@ package creatives.personastorage.Services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import creatives.personastorage.Models.PersonaImageObject;
 import creatives.personastorage.Models.PersonaObject;
 import creatives.personastorage.Services.Abstract.PersonaDataService;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class PersonaDataServiceImplementation implements PersonaDataService {
 
   private ArrayList<PersonaObject> personaList = null;
+  private ArrayList<PersonaImageObject> imageList = null;
+  private FileServiceImplementation fileService = new FileServiceImplementation();
 
   @Override
   public void addPersona(String JSONStringToAdd) throws JsonProcessingException {
     if(personaList == null){
       personaList = new ArrayList<>();
+      imageList = new ArrayList<>();
       PersonaObject persona = JsonToPersona(JSONStringToAdd);
       persona.setID(0);
       personaList.add(persona);
@@ -47,6 +56,10 @@ public class PersonaDataServiceImplementation implements PersonaDataService {
   public ArrayList<PersonaObject> getPersonas() {
     return personaList;
   }
+  @Override
+  public ArrayList<PersonaImageObject> getImages() {
+    return imageList;
+  }
 
   @Override
   public int getNextID() {
@@ -64,6 +77,7 @@ public class PersonaDataServiceImplementation implements PersonaDataService {
   public String personaListToJSON(ArrayList<PersonaObject> personaObjList) throws JsonProcessingException {
     ObjectMapper mapper = new ObjectMapper();
     mapper.enable(SerializationFeature.INDENT_OUTPUT);
+    mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
     String json = mapper.writeValueAsString(personaObjList);
     return json;
   }
@@ -83,7 +97,47 @@ public class PersonaDataServiceImplementation implements PersonaDataService {
     persona.setHeadShape((String) mapping.get("headShape"));
     persona.setHeight((String) mapping.get("height"));
     persona.setBodyType((String) mapping.get("bodyType"));
-    persona.setImage((String) mapping.get("image"));
     return persona;
+  }
+
+  @Override
+  public void addPersonaImage(MultipartFile imageToAdd) { // set the image in the list
+    int count = getRecentlyAddedUser();
+    PersonaImageObject personaImage = new PersonaImageObject();
+    personaImage.setId(count);
+    personaImage.setImagefile(imageToAdd);
+    uploadImage(personaImage);
+    imageList.add(personaImage);
+  }
+
+  void uploadImage(PersonaImageObject imageToAdd) {
+    String url = "uploads/";
+    if (imageToAdd.getImagefile().getOriginalFilename() != "") {
+      try {
+        Path root = Paths.get(url + "images/");
+        Files.copy(imageToAdd.getImagefile().getInputStream(), root.resolve(imageToAdd.getId() + ".jpeg"), StandardCopyOption.REPLACE_EXISTING);
+      } catch (Exception e) {
+        throw new RuntimeException(" Could not store the file. Error: " + e.getMessage());
+      }
+    }else {
+      try {
+        Path rootFile = Paths.get(url + "default.jpeg");
+        Path root = Paths.get(url + "images/");
+        Files.copy(rootFile,root.resolve(imageToAdd.getId() + ".jpeg"),StandardCopyOption.REPLACE_EXISTING);
+      } catch (Exception e) {
+        throw new RuntimeException(" Could not store the file. Error: " + e.getMessage());
+      }
+    }
+  }
+
+  int getRecentlyAddedUser(){
+    int count = -1;
+    for (PersonaObject p:
+      personaList) {
+      if(p.getID() > count){
+        count = p.getID();
+      }
+    }
+    return count;
   }
 }
