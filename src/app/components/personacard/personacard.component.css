@@ -7,6 +7,10 @@
     align-items: center;
   }
 
+img {
+    max-height: 1400px;
+}
+
 mat-card {
     margin-bottom: 10px;
     color: black;
