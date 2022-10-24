@@ -5,6 +5,7 @@ import creatives.personastorage.Links.PersonaStorageLinks;
 import creatives.personastorage.Models.PersonaImageObject;
 import creatives.personastorage.Models.PersonaObject;
 import creatives.personastorage.Services.PersonaDataServiceImplementation;
+import creatives.personastorage.Services.PersonaImageDataServiceImplementation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -23,17 +24,18 @@ import java.util.ArrayList;
 @CrossOrigin("*")
 public class PersonaStorageController {
 
-  PersonaDataServiceImplementation service = new PersonaDataServiceImplementation();
+  PersonaDataServiceImplementation personaService = new PersonaDataServiceImplementation();
+  PersonaImageDataServiceImplementation personaImageService = new PersonaImageDataServiceImplementation();
 
   @GetMapping(path= PersonaStorageLinks.GET_PERSONAS)
   public ResponseEntity<?> getPersonas() throws JsonProcessingException { // Retrieve Personas
     log.info("fetching personas ....");
     System.out.println("fetching personas ....");
-    if(service.getPersonas() == null){
+    if(personaService.getPersonas() == null){
       return ResponseEntity.ok("null");
     }else {
-      ArrayList<PersonaObject> personas = service.getPersonas();
-      String retString = service.personaListToJSON(personas);
+      ArrayList<PersonaObject> personas = personaService.getPersonas();
+      String retString = personaService.personaListToJSON(personas);
       return ResponseEntity.ok().body(retString);
     }
   }
@@ -42,8 +44,8 @@ public class PersonaStorageController {
   public ResponseEntity<?> addPersona(@RequestParam("image") MultipartFile image, @RequestParam("persona") String personaJSON) throws JsonProcessingException {
     log.info("Retrieved: "+personaJSON);
     System.out.println("Retrieved: "+personaJSON);
-    service.addPersona(personaJSON.toString());
-    service.addPersonaImage(image);
+    personaService.addPersona(personaJSON.toString());
+    personaImageService.addPersonaImage(image, personaService.getRecentlyAddedUser());
     return ResponseEntity.ok().body("{}");
   }
 
@@ -51,7 +53,7 @@ public class PersonaStorageController {
   public ResponseEntity<?> editPersona(@RequestBody String personaJSON) throws JsonProcessingException {
     log.info("Editing: "+personaJSON);
     System.out.println("Editing: "+personaJSON);
-    service.editPersona(personaJSON);
+    personaService.editPersona(personaJSON);
     return ResponseEntity.ok().body("{}");
   }
 

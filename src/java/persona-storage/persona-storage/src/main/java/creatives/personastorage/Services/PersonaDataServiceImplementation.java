@@ -1,35 +1,28 @@
 package creatives.personastorage.Services;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import creatives.personastorage.Models.PersonaImageObject;
 import creatives.personastorage.Models.PersonaObject;
 import creatives.personastorage.Services.Abstract.PersonaDataService;
 import org.springframework.stereotype.Service;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class PersonaDataServiceImplementation implements PersonaDataService {
 
   private ArrayList<PersonaObject> personaList = null;
-  private ArrayList<PersonaImageObject> imageList = null;
-  private FileServiceImplementation fileService = new FileServiceImplementation();
 
+  /**
+   * Adds a persona using a JSON String with persona data
+   * @param JSONStringToAdd
+   * @throws JsonProcessingException
+   */
   @Override
   public void addPersona(String JSONStringToAdd) throws JsonProcessingException {
     if(personaList == null){
       personaList = new ArrayList<>();
-      imageList = new ArrayList<>();
       PersonaObject persona = JsonToPersona(JSONStringToAdd);
       persona.setID(0);
       personaList.add(persona);
@@ -40,6 +33,12 @@ public class PersonaDataServiceImplementation implements PersonaDataService {
     }
   }
 
+  /**
+   * Overwrites the existing persona with new JSON String data
+   * @param JSONStringToAdd
+   * @throws JsonProcessingException
+   */
+  @Override
   public void editPersona(String JSONStringToAdd) throws JsonProcessingException {
       PersonaObject persona = JsonToPersona(JSONStringToAdd);
       int id = persona.getID();
@@ -52,17 +51,20 @@ public class PersonaDataServiceImplementation implements PersonaDataService {
       personaList.add(persona);
   }
 
+  /**
+   * Returns Persona List
+   * @return
+   */
   @Override
   public ArrayList<PersonaObject> getPersonas() {
     return personaList;
   }
-  @Override
-  public ArrayList<PersonaImageObject> getImages() {
-    return imageList;
-  }
 
-  @Override
-  public int getNextID() {
+
+  /*
+      HELPER FUNCTIONS START---------------------------
+   */
+  private int getNextID() {
     int nextID = -1;
     if(personaList != null) {
       for (PersonaObject p : personaList) {
@@ -100,37 +102,7 @@ public class PersonaDataServiceImplementation implements PersonaDataService {
     return persona;
   }
 
-  @Override
-  public void addPersonaImage(MultipartFile imageToAdd) { // set the image in the list
-    int count = getRecentlyAddedUser();
-    PersonaImageObject personaImage = new PersonaImageObject();
-    personaImage.setId(count);
-    personaImage.setImagefile(imageToAdd);
-    uploadImage(personaImage);
-    imageList.add(personaImage);
-  }
-
-  void uploadImage(PersonaImageObject imageToAdd) {
-    String url = "uploads/";
-    if (imageToAdd.getImagefile().getOriginalFilename() != "") {
-      try {
-        Path root = Paths.get(url + "images/");
-        Files.copy(imageToAdd.getImagefile().getInputStream(), root.resolve(imageToAdd.getId() + ".jpeg"), StandardCopyOption.REPLACE_EXISTING);
-      } catch (Exception e) {
-        throw new RuntimeException(" Could not store the file. Error: " + e.getMessage());
-      }
-    }else {
-      try {
-        Path rootFile = Paths.get(url + "default.jpeg");
-        Path root = Paths.get(url + "images/");
-        Files.copy(rootFile,root.resolve(imageToAdd.getId() + ".jpeg"),StandardCopyOption.REPLACE_EXISTING);
-      } catch (Exception e) {
-        throw new RuntimeException(" Could not store the file. Error: " + e.getMessage());
-      }
-    }
-  }
-
-  int getRecentlyAddedUser(){
+  public int getRecentlyAddedUser(){
     int count = -1;
     for (PersonaObject p:
       personaList) {
@@ -140,4 +112,9 @@ public class PersonaDataServiceImplementation implements PersonaDataService {
     }
     return count;
   }
+
+  /*
+      HELPER FUNCTIONS END ---------------------------
+   */
+
 }

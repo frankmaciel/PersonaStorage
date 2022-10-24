@@ -10,13 +10,8 @@ import java.util.ArrayList;
 public interface PersonaDataService {
 
   abstract void addPersona(String JSONStringToAdd) throws JsonProcessingException;
-  abstract void addPersonaImage(MultipartFile imageToAdd);
-
   abstract ArrayList<PersonaObject> getPersonas();
-  abstract ArrayList<PersonaImageObject> getImages();
-
-  abstract int getNextID();
   public void editPersona(String JSONStringToAdd) throws JsonProcessingException;
-
+  // Need a Delete Persona Soon
 
 }
