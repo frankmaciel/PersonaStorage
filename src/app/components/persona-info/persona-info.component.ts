@@ -12,9 +12,14 @@ export class PersonaInfoComponent implements OnInit {
   constructor(private personaDataService: PersonaDataService) { }
 
   edit = false;
-
   persona: any
   modelPersona: any
+
+  url:string = "http://localhost:8080/uploads/images/"
+
+  imageURL(id: string){
+    return this.url + id + ".jpeg"
+  }
 
   onSubmit(){
     this.edit = true;

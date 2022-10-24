@@ -131,14 +131,11 @@
     </div>
     <br/>
     <div class="row">
-    <div class="col-xs-3" style="color: grey;">Image:</div>
-    <div *ngIf='(persona.image != "")'>
-      <div class="col-xs-9">{{ persona.image }}</div>
+      <div class="col-xs-3" style="color: grey;">Image:</div>
+      <div *ngIf='(persona.image != "")'>
+        <img [src]="imageURL(persona.id)" alt="">
+      </div>
     </div>
-    <div *ngIf='(persona.image == "")'>
-      <div class="col-xs-9">No Image</div>
-    </div>
-  </div>
   <br>
   <div mat-dialog-actions class="row">
     <button type="button" class="btn btn-primary" (click)="this.edit=true">Edit</button>

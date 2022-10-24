@@ -14,6 +14,8 @@ export class PersonaFormComponent implements OnInit {
 
   image: File = new File([],"")
 
+  imgName:string = ""
+
   submitted = false;
 
   model = new Persona(0,"Jane", "Young" ,"female", "red","long","wavy","blue", "round", "short", "skinny", this.image);
@@ -36,7 +38,9 @@ export class PersonaFormComponent implements OnInit {
   }
 
   setImage(imageToSet : File){
+    this.image = imageToSet
     this.model.image = imageToSet
+    this.imgName = imageToSet.name
   }
 
   ngOnInit(): void {

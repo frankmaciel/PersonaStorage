@@ -137,8 +137,15 @@
         <div class="col-xs-9">{{ model.bodyType }}</div>
       </div>
       <div class="row">
-        <div class="col-xs-3" style="color: grey;">Image:</div>
-        <div class="col-xs-9">{{ model.image }}</div>
+        <div *ngIf="this.imgName == ''">
+          <div class="col-xs-3" style="color: grey;">Image:</div>
+          <div class="col-xs-9">default.jpeg</div>
+          <img src="assets/default.jpeg" alt="">
+        </div>
+        <div *ngIf="this.imgName != ''">
+          <div class="col-xs-3" style="color: grey;">Image:</div>
+          <div class="col-xs-9">{{ this.imgName }}</div>
+        </div>
       </div>
       <br>
       <div mat-dialog-actions class="row">
